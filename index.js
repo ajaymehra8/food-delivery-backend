@@ -1,12 +1,10 @@
-const express=require("express");
-const cors=require("cors");
-const mongoDB=require("./db")
+const express = require("express");
+const cors = require("cors");
+const mongoDB = require("./db");
 mongoDB();
 
-
-
-const app=express();
-const PORT=process.env.PORT || 5000;
+const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 
@@ -26,16 +24,14 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use('/api',require('./Routes/CreateUser'));
-app.use('/api',require('./Routes/DisplayData'));
-app.use('/api',require('./Routes/OrderData'));
+app.use('/api', require('./Routes/CreateUser'));
+app.use('/api', require('./Routes/DisplayData'));
+app.use('/api', require('./Routes/OrderData'));
 
+app.get("/", (req, res) => {
+    res.send("Hello");
+});
 
-
-app.get("/",(req,res)=>{
-res.send("Hello");
-})
-
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`Listening to port ${PORT}`);
-})
+});
